@@ -7,7 +7,7 @@ const userModel = require(__dirname + '/models/User');
 
 const gmModel = require(__dirname + '/models/Message');
 
-const PORT = 5001 || process.env.PORT;
+const PORT = 9000 || process.env.PORT;
 
 //create server side socket
 const io = require('socket.io')(http)
@@ -17,7 +17,6 @@ users = []
 
 io.on('connection', (socket) => {
   console.log('Connected ')
-  socket.emit('welcome', 'Welcome to Socket Programming : ' + socket.id)
   socket.on('message', async (data) => {
     const message = {
       username: data.username,
@@ -46,7 +45,7 @@ io.on('connection', (socket) => {
         socket.id = name
     })
     
-    //Group/Room Join
+    //Joining Message
     socket.on('joinroom', (room,username) => {
         socket.join(room)
         socket.broadcast.to(room).emit('joined', username)
@@ -54,9 +53,9 @@ io.on('connection', (socket) => {
     socket.on('leaveRoom', (room, username) =>{
       socket.broadcast.to(room).emit('left', username)
     })
-    //Disconnected
+    //Disconnecting Message
     socket.on('disconnect', () => {
-        console.log(`${socket.id} disconnected`)
+        console.log(`${socket.id} is disconnected`)
     })
   })
 
@@ -67,8 +66,9 @@ app.use(
     })
   )
   
+//Change string to your mongodb address  
 app.use(express.json());
-mongoose.connect('mongodb+srv://Vraj38:vraj@cluster0.nwmxkkr.mongodb.net/LabTest2?retryWrites=true&w=majority', 
+mongoose.connect('mongodb+srv://Vraj38:vraj@cluster0.nwmxkkr.mongodb.net/here?retryWrites=true&w=majority', 
 {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -79,10 +79,6 @@ mongoose.connect('mongodb+srv://Vraj38:vraj@cluster0.nwmxkkr.mongodb.net/LabTest
 .catch(err => {
   console.log('Error Mongodb connection')
 });
-
-
-
-
 
 app.post('/login', async (req, res) => {
     const user = new userModel(req.body);
@@ -135,14 +131,11 @@ app.get("/main", (req, res) => {
     res.sendFile(__dirname + "/pages/main.html")
 })
 
-
 app.get('/main/:room', async (req, res) => {
     const room = req.params.room
     const msg = await gmModel.find({room: room}).sort({'date_sent': 'desc'}).limit(10);
     res.sendFile(__dirname + '/pages/main.html')
   });
-
-
 
 app.get("/login", (req, res) => {
     res.sendFile(__dirname + "/pages/login.html")
@@ -158,7 +151,6 @@ catch (e) {
     res.status(400).send({ error: e.message });
 }
 })
-
 
 http.listen(PORT, () =>{
     console.log(`Server running on port ${PORT}`)

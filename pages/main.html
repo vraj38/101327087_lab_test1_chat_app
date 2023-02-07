@@ -176,12 +176,10 @@
         if(username ==""|| username ==null){
             window.location.href = "/login"
         }
-
         function getRoom() {
-            let arr = window.location.href.split("/");
-            return arr[arr.length - 1];
-        }
-
+                let arr = window.location.href.split("/");
+                return arr[arr.length - 1];
+            }
         const room = getRoom()
         document.getElementById('roomId').innerHTML = room
         
@@ -195,62 +193,61 @@
             mc.innerHTML += '<div>' + data + '</div>'
         })
 
-        client.on('roomMessage', (message) =>{
+        client.on('newMessage', (message) =>{
             printMessage(message)
         })
 
         client.on('joined',(username)=>{
-            const roomRoomMessage = {
+            const newRoomMessage = {
                 message: `has Joined this group`,
                 username
             }
-            printMessage(roomRoomMessage)
+            printMessage(newRoomMessage)
         })
         client.on('left', (userName) => {
-            const roomRoomMessage = {
+            const newRoomMessage = {
                 message: `has left this group`,
                 username
             }
-            printMessage(roomRoomMessage)
+            printMessage(newRoomMessage)
         })
-    
-        function leaveRoom() {
+    function leaveRoom() {
             client.emit('leaveRoom', room, username)
             window.location.href = "/index";
         }
     
-        function sendMessage(){
-            client.emit('message', 
-            {   
-                username:username,
-                room: room,
-                message: document.getElementById('msg').value
-            })
-            printMessage(message= {
-                username: username,
-                room: room,
-                message: document.getElementById('msg').value
-            })
-        }
-        
-        function printMessage(message){
-            document.getElementById('messages').innerHTML += `<li> ${message.username}: ${message.message} </li>`
-        }
+    function sendMessage(){
+        client.emit('message', 
+        {   
+            username:username,
+            room: room,
+            message: document.getElementById('msg').value
+        })
+        printMessage(message= {
+            username: username,
+            room: room,
+            message: document.getElementById('msg').value
+        })
+    }
+    function printMessage(message){
+        document.getElementById('messages').innerHTML += `<li> ${message.username}: ${message.message} </li>`
+    }
 
-        fetch('http://localhost:9000/chathistory',{
-            method: "POST",
+    fetch('http://localhost:9000/chathistory',{
+        method: "POST",
             cache: 'no-cache',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 room
             })
         }
-        ).then(res => res.json())
+        )
+            .then(res => res.json())
             .then(res => {
                 var result = res
                 for(let i=0;i<result.length;i++){
                     document.getElementById("history").innerHTML +=
-                        `<li> ${result[i].from_user} : ${result[i].message}</li>` 
+                            `<li> ${result[i].from_user} : ${result[i].message}</li>` 
                 }
             })
             .catch(err => alert(err))
