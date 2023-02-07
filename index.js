@@ -68,7 +68,7 @@ app.use(
   )
   
 app.use(express.json());
-mongoose.connect('mongodb+srv://Vraj38:vraj@cluster0.nwmxkkr.mongodb.net/Labtest2?retryWrites=true&w=majority', 
+mongoose.connect('mongodb+srv://Vraj38:vraj@cluster0.nwmxkkr.mongodb.net/labtest1?retryWrites=true&w=majority', 
 {
   useNewUrlParser: true,
   useUnifiedTopology: true
