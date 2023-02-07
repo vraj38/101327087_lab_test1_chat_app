@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema({
     password:   {
         type: String,
         required: [true, 'Please enter a password'],
-        minlength:6,
+        minlength:5,
     },
       
     createon:   {
@@ -33,3 +33,23 @@ const UserSchema = new mongoose.Schema({
     },
 
 });
+
+UserSchema.post('init', function(doc) {
+    console.log(doc._id + ' has been initialized from the db');
+});
+  
+UserSchema.pre('validate', function(next) {
+    console.log(`${this._id} has been validated (but not saved yet)`);
+    next();
+});
+  
+UserSchema.post('save', function(doc) {
+    console.log(doc._id + ' has been saved');
+});
+  
+UserSchema.post('remove', function(doc) {
+    console.log(doc._id + ' has been removed');
+});
+  
+const User = mongoose.model("User", UserSchema);
+module.exports = User;
