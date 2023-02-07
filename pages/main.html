@@ -4,176 +4,184 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <title>Chat Box</title>
     <style>
         body{
             background-color: #d8bbe1;
             font-family: 'Ubuntu', sans-serif;
         }
+
         button{
             margin:10px;
         }
+
         .main {
-        background-color: #FFFFFF;
-        width: 700px;
-        height: 650px;
-        margin: 4em auto;
-        border-radius: 1.5em;
-        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-    }
-    
-    .sign {
-        padding-top: 40px;
-        color: #8C55AA;
-        font-family: 'Ubuntu', sans-serif;
-        font-weight: bold;
-        font-size: 23px;
-        text-align: center;
-    }
-    .new{
-        text-align: center;
-        text-decoration: solid;
-        text-transform: capitalize;
-    }
-    
-    form.form1 {
-        padding-top: 40px;
-    }
-    .un:focus, .pass:focus {
-        border: 2px solid rgba(0, 0, 0, 0.18) !important;
-        
-    }
-    
-    .submit {
-      cursor: pointer;
-        border-radius: 5em;
-        color: #fff;
-        background: linear-gradient(to right, #9C27B0, #E040FB);
-        border: 0;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-bottom: 10px;
-        padding-top: 10px;
-        font-family: 'Ubuntu', sans-serif;
-        margin-left: 38%;
-        font-size: 13px;
-        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-    }
-    .submitsend {
-      cursor: pointer;
-        border-radius: 5em;
-        color: #fff;
-        background: linear-gradient(to right, #9C27B0, #E040FB);
-        border: 0;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-bottom: 10px;
-        padding-top: 10px;
-        font-family: 'Ubuntu', sans-serif;
-        margin-left: 10%;
-        font-size: 13px;
-        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-    }
-    .len{
-        width:70%;
-    }
-    
-    .forgot {
-        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-        color: #aa150a;
-        padding-top: 25px;
-        text-align: center;
-        padding-left: 80px;
-    }
-    
-    a {
-        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-        color: #100113;
-        text-decoration: none
-    }
-    
-    @media (max-width: 600px) {
-        .main {
-            border-radius: 0px;
+            background-color: #FFFFFF;
+            width: 700px;
+            height: 650px;
+            margin: 4em auto;
+            border-radius: 1.5em;
+            box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
         }
-      }
-
-    button{
-        margin: 4px;
-    }
-       
-    .text{
-        width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-    }        
-    .messages{
-        background-color: rgb(130, 53, 130);
-        color: #FFFFFF;
-        height: 250px;
-        overflow-y: scroll;
-        margin-left: 8px 0;
-    }
-    .chatHistory{
-        background-color: white;
-        height: 133px;
-        text-align: center;
-        overflow-y: scroll;
-    }
-</style>
-</head>
     
-<div class="main">
-    <header class="sign" >
-      Chat App 
-    </header>
+        .sign {
+            padding-top: 40px;
+            color: #8C55AA;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: bold;
+            font-size: 23px;
+            text-align: center;
+        }
 
-      <div>
-          <div class="new">
+        .room{
+            text-align: center;
+            text-decoration: solid;
+            text-transform: capitalize;
+        }
+    
+        form.form1 {
+            padding-top: 40px;
+        }
+
+        .un:focus, .pass:focus {
+            border: 2px solid rgba(0, 0, 0, 0.18) !important;
+        
+        }
+    
+        .submit {
+            cursor: pointer;
+            border-radius: 5em;
+            color: #fff;
+            background: linear-gradient(to right, #9C27B0, #E040FB);
+            border: 0;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-family: 'Ubuntu', sans-serif;
+            margin-left: 38%;
+            font-size: 13px;
+            box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+        }
+        .submitsend {
+            cursor: pointer;
+            border-radius: 5em;
+            color: #fff;
+            background: linear-gradient(to right, #9C27B0, #E040FB);
+            border: 0;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-family: 'Ubuntu', sans-serif;
+            margin-left: 10%;
+            font-size: 13px;
+            box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+        }
+        
+        .len{
+            width:70%;
+        }
+    
+        .forgot {
+            text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+            color: #aa150a;
+            padding-top: 25px;
+            text-align: center;
+            padding-left: 80px;
+        }
+    
+        a {
+            text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+            color: #100113;
+            text-decoration: none
+        }
+    
+        @media (max-width: 600px) {
+            .main {
+                border-radius: 0px;
+            }
+        }
+
+        button{
+            margin: 4px;
+        }
+       
+        .text{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        } 
+
+        .messages{
+            background-color: rgb(130, 53, 130);
+            color: #FFFFFF;
+            height: 250px;
+            overflow-y: scroll;
+            margin-left: 8px 0;
+        }
+
+        .chatHistory{
+            background-color: white;
+            height: 133px;
+            text-align: center;
+            overflow-y: scroll;
+        }
+
+    </style>
+</head>
+<body> 
+
+    <div class="main">
+        <header class="sign">Chat App </header>
+
+        <div>
+            <div class="room">
             <h3 id="roomId"></h3>
-          </div>
-      </div>
-      <div class="messages" id="messages">
-					<div class="message">
-					</div>
-      </div>
-   
-    <div class="text">
-        <input
-        class="len"
-          id="msg"
-          type="text"
-          placeholder="Enter Message"
-          autocomplete="off"
-          required
-        />
-        <button class="submitsend" onclick="sendMessage()" > Send</button>
-    </div>
+            </div>
+        </div>
 
-    <button onclick="leaveRoom()" class="submit" >Leave Room</a></button>
-    <div class="chatHistory">
-        <p>Chat history</p>
-        <div id="history"></div>
-      </div>
-  </div>
+        <div class="messages" id="messages">
+			<div class="message"></div>
+		</div>
+   
+        <div class="text">
+            <input
+                class="len"
+                id="msg"
+                type="text"
+                placeholder="Enter Message"
+                autocomplete="off"
+                required
+            />
+            <button class="submitsend" onclick="sendMessage()" > Send</button>
+        </div>
+
+        <button onclick="leaveRoom()" class="submit" >Leave Room</a></button>
+        <div class="chatHistory">
+            <p>Chat history</p>
+            <div id="history"></div>
+        </div>
+    </div>
   
 </body>
+
 <script src = "/socket.io/socket.io.js"></script>
     <script>
         const username = localStorage.getItem("username")
         if(username ==""|| username ==null){
             window.location.href = "/login"
         }
+
         function getRoom() {
-                let arr = window.location.href.split("/");
-                return arr[arr.length - 1];
-            }
+            let arr = window.location.href.split("/");
+            return arr[arr.length - 1];
+        }
+
         const room = getRoom()
         document.getElementById('roomId').innerHTML = room
         
@@ -187,61 +195,62 @@
             mc.innerHTML += '<div>' + data + '</div>'
         })
 
-        client.on('newMessage', (message) =>{
+        client.on('roomMessage', (message) =>{
             printMessage(message)
         })
 
         client.on('joined',(username)=>{
-            const newRoomMessage = {
+            const roomRoomMessage = {
                 message: `has Joined this group`,
                 username
             }
-            printMessage(newRoomMessage)
+            printMessage(roomRoomMessage)
         })
         client.on('left', (userName) => {
-            const newRoomMessage = {
+            const roomRoomMessage = {
                 message: `has left this group`,
                 username
             }
-            printMessage(newRoomMessage)
+            printMessage(roomRoomMessage)
         })
-    function leaveRoom() {
+    
+        function leaveRoom() {
             client.emit('leaveRoom', room, username)
             window.location.href = "/index";
         }
     
-    function sendMessage(){
-        client.emit('message', 
-        {   
-            username:username,
-            room: room,
-            message: document.getElementById('msg').value
-        })
-        printMessage(message= {
-            username: username,
-            room: room,
-            message: document.getElementById('msg').value
-        })
-    }
-    function printMessage(message){
-        document.getElementById('messages').innerHTML += `<li> ${message.username}: ${message.message} </li>`
-    }
+        function sendMessage(){
+            client.emit('message', 
+            {   
+                username:username,
+                room: room,
+                message: document.getElementById('msg').value
+            })
+            printMessage(message= {
+                username: username,
+                room: room,
+                message: document.getElementById('msg').value
+            })
+        }
+        
+        function printMessage(message){
+            document.getElementById('messages').innerHTML += `<li> ${message.username}: ${message.message} </li>`
+        }
 
-    fetch('http://localhost:9000/chathistory',{
-        method: "POST",
+        fetch('http://localhost:9000/chathistory',{
+            method: "POST",
             cache: 'no-cache',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 room
             })
         }
-        )
-            .then(res => res.json())
+        ).then(res => res.json())
             .then(res => {
                 var result = res
                 for(let i=0;i<result.length;i++){
                     document.getElementById("history").innerHTML +=
-                            `<li> ${result[i].from_user} : ${result[i].message}</li>` 
+                        `<li> ${result[i].from_user} : ${result[i].message}</li>` 
                 }
             })
             .catch(err => alert(err))

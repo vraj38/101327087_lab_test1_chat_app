@@ -16,8 +16,8 @@ app.use(cors())
 users = []
 
 io.on('connection', (socket) => {
-  console.log(`${socket.id} Connected`)
-  
+  console.log('Connected ')
+  socket.emit('welcome', 'Welcome to Socket Programming : ' + socket.id)
   socket.on('message', async (data) => {
     const message = {
       username: data.username,
@@ -68,7 +68,7 @@ app.use(
   )
   
 app.use(express.json());
-mongoose.connect('mongodb+srv://Vraj38:vraj@cluster0.nwmxkkr.mongodb.net/labtest1?retryWrites=true&w=majority', 
+mongoose.connect('mongodb+srv://Vraj38:vraj@cluster0.nwmxkkr.mongodb.net/LabTest2?retryWrites=true&w=majority', 
 {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -79,6 +79,10 @@ mongoose.connect('mongodb+srv://Vraj38:vraj@cluster0.nwmxkkr.mongodb.net/labtest
 .catch(err => {
   console.log('Error Mongodb connection')
 });
+
+
+
+
 
 app.post('/login', async (req, res) => {
     const user = new userModel(req.body);
